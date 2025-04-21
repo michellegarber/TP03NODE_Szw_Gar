@@ -35,13 +35,44 @@ app.get('/validarfecha/:ano/:mes/:dia', (req, res) => {
         res.status(200).send("Fecha Valida")
     }
 //B:
- 
+//     http://localhost:3000/matematica/sumar?n1={numero}&n2={numero}
 app.get('/matematica/sumar', (req, res) => {    
     let resultado = sumar(parseFloat(req.query.n1) + parseFloat(req.query.n2));
     res.status(200).send(resultado);
 
 })    
+//      http://localhost:3000/matematica/restar?n1={numero}&n2={numero}
+app.get('/matematica/restar', (req, res) => {    
+    let resultado = restar(parseFloat(req.query.n1) - parseFloat(req.query.n2));
+    res.status(200).send(resultado);
 
+})    
+//      http://localhost:3000/matematica/multiplicar?n1={numero}&n2={numero}
+app.get('/matematica/multiplicar', (req, res) => {    
+    let resultado = multiplicar(parseFloat(req.query.n1) * parseFloat(req.query.n2));
+    res.status(200).send(resultado);
+
+})    
+//      http://localhost:3000/matematica/dividir?n1={numero}&n2={numero}
+app.get('/matematica/dividir', (req, res) => {    
+    let resultado = dividir(parseFloat(req.query.n1) / parseFloat(req.query.n2));
+    res.status(200).send(resultado);
+
+})    
+
+//C:
+//     http://localhost:3000/omdb/searchbypage?search={texto}&p={pagina}
+app.get('/omdb/searchbypage', async (req, res) => {
+    res.status(200).send(OMDBSearchByPage(req.query.search, req.query.p));
+})
+//     http://localhost:3000/omdb/searchcomplete?search={texto}
+app.get('/omdb/searchcomplete', async (req, res) => {
+    res.status(200).send(OMDBSearchcomplete(req.query.search));
+})
+//     http://localhost:3000/omdb/getbyomdbid?imdbID={imdb}
+app.get('/omdb/getbyomdbid', async (req, res) => {
+    res.status(200).send(OMDBGetByImdbID(req.query.imdbID));
+})
 })
 // Inicio el Server y lo pongo a escuchar.
 app.listen(port, () => {

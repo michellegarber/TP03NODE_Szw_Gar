@@ -11,7 +11,7 @@
   "version": "1.0.0",
   "description": "node tp",
   "main": "server.js",
-  "type":"module",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michellegarber/TP03NODE_Szw_Gar.git"
