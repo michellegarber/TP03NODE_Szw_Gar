@@ -74,10 +74,39 @@ app.get('/omdb/getbyomdbid', async (req, res) => {
     res.status(200).send(OMDBGetByImdbID(req.query.imdbID));
 })
 })
+
+
+//D
+const alumnosArray = [];
+
+alumnosArray.push(new Alumno("Esteban Dido"  , "22888444", 20));
+
+alumnosArray.push(new Alumno("Matias Queroso", "28946255", 51));
+
+alumnosArray.push(new Alumno("Elba Calao"    , "32623391", 18));
+
+//http://localhost:3000/alumnos
+app.get('/alumnos', async (req, res) => {
+    res.status(200).send(alumnosArray);
+})  
+
+//http://localhost:3000/alumnos/22888444
+app.get('/alumnos/:dni', async (req, res) => {
+    console.log("hola")
+    let idx  = alumnosArray.findIndex(alumno => alumno.dni == req.params.dni);
+    console.log(idx)
+    if(idx == -1){
+        return res.status(404).send("DNI no encontrado") 
+    }
+    else{
+
+       return res.status(200).send(alumnosArray[idx])
+    }
+    
+})  
 // Inicio el Server y lo pongo a escuchar.
 app.listen(port, () => {
 
     console.log(`Example app listening on port ${port}`)
 
 })
-
