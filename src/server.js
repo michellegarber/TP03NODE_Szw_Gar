@@ -106,13 +106,35 @@ app.get('/alumnos/:dni', async (req, res) => {
 })  
 
 //http://localhost:3000/alumnos
-app.post('/alumnos', async (req, res) => {
+/*app.post('/alumnos', async (req, res) => {
     let username = req.params.username;
     let dni = req.params.dni;
     let edad = req.params.edad;
     alumnosArray.push(new Almuno(username, dni, edad));
     res.status(201).send("alumno añadido");
-})  
+})  */
+
+
+app.post('/alumnos', (req, res) => {
+    alumnosArray.push(new Alumno(req.body));
+    res.json(alumnosArray);
+})
+
+app.delete('/alumnos', (req, res) => {
+    const posicion = alumnosArray.findIndex(Alumno => Alumno.DNI === req.body);
+    if (alumnosArray[posicion] != -1)
+    {
+        alumnosArray.splice(alumnosArray[posicion], 1);
+        res.status(200).send("Alumno eliminado")
+    }
+    else
+    {
+        res.status(404).send("DNI no existe el dni")
+    }
+
+})
+//E
+
 
 
 
