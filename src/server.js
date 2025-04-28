@@ -104,6 +104,30 @@ app.get('/alumnos/:dni', async (req, res) => {
     }
     
 })  
+
+//http://localhost:3000/alumnos
+app.post('/alumnos', async (req, res) => {
+    let username = req.params.username;
+    let dni = req.params.dni;
+    let edad = req.params.edad;
+    alumnosArray.push(new Almuno(username, dni, edad));
+    res.status(201).send("alumno añadido");
+})  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Inicio el Server y lo pongo a escuchar.
 app.listen(port, () => {
 
